@@ -50,3 +50,38 @@ console.log(joe);
 console.log(joe.demo('Java'));
 console.log(joe.grade(student, 'Data Science'));
 
+
+class Student extends Person {
+    constructor(studentAttr){
+        super(studentAttr)
+        this.previousBackground = studentAttr.previousBackground;
+        this.className = studentAttr.className;
+        this.favSubjects = studentAttr.favSubjects
+    }
+
+    listsSubjects() {
+        return ` a method that logs out all of the student favoriteSubjects one by one`
+    }
+    PRAssignment(subject) {
+        return `a method that receives a subject as an argument and logs out that the ${this.name} has submitted a PR for ${subject}`
+    }
+    sprintChallenge(subject){
+        return `similar to PRAssignment but logs out ${this.name} has begun sprint challenge on ${subject}`
+    }
+
+}
+
+const johnson = new Student({
+    name: 'Joe',
+    age: 12, 
+    gender: 'male', 
+    location: 'Bedrock',
+    previousBackground: 'Data science background',
+    className: 'Math 405',
+    favSubjects: 'Java'
+})
+
+console.log(johnson);
+console.log(johnson.listsSubjects());
+console.log(johnson.PRAssignment('Java'));
+console.log(johnson.sprintChallenge('Python'));
