@@ -69,7 +69,12 @@ class GameObject {
   
   class Humanoid extends CharacterStats {
     constructor(humanAttr){
-        super(humanAttr)
+        const player = {
+            createdAt: humanAttr.createdAt, 
+            dimension: humanAttr.dimensions, 
+            name: humanAttr.name, 
+            healthPoints: humanAttr.healthPoints}
+        super(player)
         this.team = humanAttr.team;
     this.weapons = humanAttr.weapons;
     this.language = humanAttr.language;
