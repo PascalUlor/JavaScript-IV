@@ -19,3 +19,34 @@ const fred = new Person({name: 'Fred', age: 12, gender: 'male', location: 'Bedro
 const pascal = new Person({name: 'Pascal', age: 92, gender: 'male', location: 'Lagos'});
 console.log(fred.speak());
 console.log(pascal.speak());
+
+class Instructor extends Person {
+    constructor(instructorAttr) {
+        super(instructorAttr)
+        this.specialty = instructorAttr.specialty
+        this.favLanguage = instructorAttr.favLanguage
+        this.catchPhrase = instructorAttr.catchPhrase
+    }
+    demo(subject) {
+        return `Today we are learning about ${subject}`
+    }
+    grade(student, subject){
+        return `${student.name} receives a perfect score on ${subject}`
+    }
+}
+
+const joe = new Instructor(
+    {name: 'Joe',
+    age: 12, 
+    gender: 'male', 
+    location: 'Bedrock',
+    specialty: 'Data Science',
+    favLanguage: 'Python',
+    catchPhrase: 'In God We trust'
+});
+// Mock of student data
+let student={name: 'Paul'}
+console.log(joe);
+console.log(joe.demo('Java'));
+console.log(joe.grade(student, 'Data Science'));
+
