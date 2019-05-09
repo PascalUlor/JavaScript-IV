@@ -11,7 +11,7 @@ class Person {
     }
 
     speak() {
-        console.log(`Hello my name is ${this.name}, I am from ${this.location}`)
+        return console.log(`Hello my name is ${this.name}, I am from ${this.location}`)
     }
 }
 
@@ -20,6 +20,9 @@ const pascal = new Person({name: 'Pascal', age: 92, gender: 'male', location: 'L
 fred.speak();
 pascal.speak();
 
+/**
+ * Instructor Class
+ */
 class Instructor extends Person {
     constructor(instructorAttr) {
         super(instructorAttr)
@@ -28,19 +31,19 @@ class Instructor extends Person {
         this.catchPhrase = instructorAttr.catchPhrase
     }
     demo(subject) {
-        console.log(`Today we are learning about ${subject}`)
+        return console.log(`Today we are learning about ${subject}`)
     }
     grade(student, subject){
-        console.log(`${student.name} receives a perfect score on ${subject}`)
+        return console.log(`${student.name} receives a perfect score on ${subject}`)
     }
     updateGrade(student) {
         const randomIndex =  Math.floor(Math.random()*10);
         if(randomIndex%2 === 0) {
             student.grade += Math.floor(Math.random()*10);
-            console.log(`${student.name} increased to ${student.grade}`)
+            return console.log(`${student.name} increased to ${student.grade}`)
         } else {
             student.grade -= Math.floor(Math.random()*10);
-            console.log(`${student.name}'s decreased to ${student.grade}`)
+            return console.log(`${student.name}'s decreased to ${student.grade}`)
         }
     }
 }
@@ -62,6 +65,9 @@ joe.demo('Java');
 joe.grade(student, 'Data Science');
 
 
+/**
+ * Student Class
+ */
 class Student extends Person {
     constructor(studentAttr){
         super(studentAttr)
@@ -73,14 +79,22 @@ class Student extends Person {
 
     listsSubjects() {
         this.favSubjects.forEach(subject => {
-            console.log(subject);
+            return console.log(subject);
         });
     }
     PRAssignment(subject) {
-        console.log(`a method that receives a subject as an argument and logs out that the ${this.name} has submitted a PR for ${subject}`)
+        return console.log(`a method that receives a subject as an argument and logs out that the ${this.name} has submitted a PR for ${subject}`)
     }
     sprintChallenge(subject){
-        console.log(`similar to PRAssignment but logs out ${this.name} has begun sprint challenge on ${subject}`)
+        return console.log(`similar to PRAssignment but logs out ${this.name} has begun sprint challenge on ${subject}`)
+    }
+
+    graduate(reviewer){
+        if (this.grade >= 70){
+            return console.log(`congratulations ${this.name} you graduated with ${this.grade}`);
+        } else {
+            return console.log(`sorry you didn't make the cut off mark ${reviewer.updateGrade(this)}`)
+        }
     }
 
 }
@@ -99,7 +113,11 @@ console.log(johnson);
 johnson.listsSubjects();
 johnson.PRAssignment('Java');
 johnson.sprintChallenge('Python');
+johnson.graduate(joe);
 
+/**
+ * Project Manager Class
+ */
 class ProjectManager extends Instructor {
     constructor(pmAttr) {
         super(pmAttr)
@@ -108,11 +126,11 @@ class ProjectManager extends Instructor {
     }
 
     standUp(channel) {
-        console.log(`${this.name} announces to ${channel}, @channel standup times!​​​​​`)
+        return console.log(`${this.name} announces to ${channel}, @channel standup times!​​​​​`)
     }
 
     debugsCode(student, subject) {
-        console.log(`${this.name} debugs ${student.name}'s code on ${subject}`)
+        return console.log(`${this.name} debugs ${student.name}'s code on ${subject}`)
     }
 }
 
