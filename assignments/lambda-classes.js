@@ -17,8 +17,8 @@ class Person {
 
 const fred = new Person({name: 'Fred', age: 12, gender: 'male', location: 'Bedrock'});
 const pascal = new Person({name: 'Pascal', age: 92, gender: 'male', location: 'Lagos'});
-console.log(fred.speak());
-console.log(pascal.speak());
+fred.speak();
+pascal.speak();
 
 class Instructor extends Person {
     constructor(instructorAttr) {
@@ -32,6 +32,16 @@ class Instructor extends Person {
     }
     grade(student, subject){
         console.log(`${student.name} receives a perfect score on ${subject}`)
+    }
+    updateGrade(student) {
+        const randomIndex =  Math.floor(Math.random()*10);
+        if(randomIndex%2 === 0) {
+            student.grade += Math.floor(Math.random()*10);
+            console.log(`${student.name} increased to ${student.grade}`)
+        } else {
+            student.grade -= Math.floor(Math.random()*10);
+            console.log(`${student.name}'s decreased to ${student.grade}`)
+        }
     }
 }
 
@@ -48,8 +58,8 @@ const joe = new Instructor(
 // Mock of student data
 let student={name: 'Paul'}
 console.log(joe);
-console.log(joe.demo('Java'));
-console.log(joe.grade(student, 'Data Science'));
+joe.demo('Java');
+joe.grade(student, 'Data Science');
 
 
 class Student extends Person {
@@ -58,6 +68,7 @@ class Student extends Person {
         this.previousBackground = studentAttr.previousBackground;
         this.className = studentAttr.className;
         this.favSubjects = studentAttr.favSubjects
+        this.grade = 75
     }
 
     listsSubjects() {
@@ -75,7 +86,7 @@ class Student extends Person {
 }
 
 const johnson = new Student({
-    name: 'Joe',
+    name: 'Johnson',
     age: 12, 
     gender: 'male', 
     location: 'Bedrock',
@@ -85,9 +96,9 @@ const johnson = new Student({
 })
 
 console.log(johnson);
-console.log(johnson.listsSubjects());
-console.log(johnson.PRAssignment('Java'));
-console.log(johnson.sprintChallenge('Python'));
+johnson.listsSubjects();
+johnson.PRAssignment('Java');
+johnson.sprintChallenge('Python');
 
 class ProjectManager extends Instructor {
     constructor(pmAttr) {
@@ -118,5 +129,7 @@ const matt = new ProjectManager({
 })
 
 console.log(matt);
-console.log(matt.standUp('WebSprint'));
-console.log(matt.debugsCode(johnson, 'Javascript'));
+matt.standUp('WebSprint');
+matt.debugsCode(johnson, 'Javascript');
+matt.updateGrade(johnson);
+
